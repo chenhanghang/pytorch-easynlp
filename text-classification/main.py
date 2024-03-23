@@ -9,7 +9,7 @@ from utils.common_utils import get_time_dif
 
 
 parser = argparse.ArgumentParser(description='Text Classification')
-parser.add_argument('--model', type=str, required=True, help='choose a model: fast_text, text_cnn')
+parser.add_argument('--model', type=str, required=True, help='choose a model: fast_text, text_cnn, text_lstm')
 parser.add_argument('--embedding', default='pre_trained', type=str, help='random or pre_trained')
 parser.add_argument('--word', default=False, type=bool, help='True for word, False for char')
 args = parser.parse_args()
