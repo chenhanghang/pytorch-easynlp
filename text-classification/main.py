@@ -5,9 +5,11 @@ import numpy as np
 from train_eval import train, init_network
 from importlib import import_module
 import argparse
+from utils.common_utils import get_time_dif
+
 
 parser = argparse.ArgumentParser(description='Text Classification')
-parser.add_argument('--model', type=str, required=True, help='choose a model: TextCNN, TextRNN, FastText, TextRCNN,  DPCNN, Transformer')
+parser.add_argument('--model', type=str, required=True, help='choose a model: fast_text, text_cnn')
 parser.add_argument('--embedding', default='pre_trained', type=str, help='random or pre_trained')
 parser.add_argument('--word', default=False, type=bool, help='True for word, False for char')
 args = parser.parse_args()
@@ -22,13 +24,14 @@ if __name__ == '__main__':
         embedding = 'random'
     model_name = args.model  # fast_text TextCNN, TextRNN, FastText, TextRCNN, TextRNN_Att, DPCNN, Transformer
     if model_name == 'fast_text':
-        from utils_fasttext import build_dataset, build_iterator, get_time_dif
+        from datasets.fast_text import build_dataset, build_iterator
         embedding = 'random'
-    #else:
-    #    from utils import build_dataset, build_iterator, get_time_dif
+    else:
+        from datasets.common_model import build_dataset, build_iterator
 
     x = import_module('models.' + model_name)
-    config = x.Config(dataset, embedding)
+    c = import_module('configs.' + model_name+"_config")
+    config = c.Config(dataset, embedding)
     np.random.seed(1)
     torch.manual_seed(1)
     torch.cuda.manual_seed_all(1)

@@ -4,6 +4,16 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
+"""
+<bound method Module.parameters of Model(
+  (embedding): Embedding(4762, 300, padding_idx=4761)
+  (embedding_ngram2): Embedding(250499, 300)
+  (embedding_ngram3): Embedding(250499, 300)
+  (dropout): Dropout(p=0.5, inplace=False)
+  (fc1): Linear(in_features=900, out_features=256, bias=True)
+  (fc2): Linear(in_features=256, out_features=10, bias=True)
+)>
+"""
 class Model(nn.Module):
     def __init__(self, config):
         super(Model, self).__init__()
