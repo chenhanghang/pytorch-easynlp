@@ -16,7 +16,7 @@ class Config(object):
             'data/' + dataset + '/data/class.txt', encoding='utf-8').readlines()]              # 类别名单
         self.vocab_path = 'data/'+ dataset + '/data/vocab.pkl'                                # 词表
         self.save_path = 'model_hub/saved_dict/' + self.model_name + '.ckpt'        # 模型训练结果
-        self.log_path = 'data/'+dataset + '/log/' + self.model_name
+        self.log_path = 'logs/' + self.model_name
         self.embedding_pretrained = torch.tensor(
             np.load('data/'+dataset + '/data/' + embedding)["embeddings"].astype('float32'))\
             if embedding != 'random' else None                                       # 预训练词向量
