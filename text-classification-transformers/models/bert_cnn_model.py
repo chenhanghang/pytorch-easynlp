@@ -4,10 +4,12 @@ import torch.nn.functional as F
 from transformers import AutoModel
 
 
+
 class TextCNN(nn.Module):
     def __init__(self):
         super(TextCNN, self).__init__()
-        self.bert = AutoModel.from_pretrained("bert-base-chinese")
+        #self.bert = AutoModel.from_pretrained("bert-base-chinese")
+        self.bert = AutoModel.from_pretrained("./model_hub/bert-base-chinese")
         for param in self.bert.parameters():
             param.requires_grad_(False)
 

@@ -4,7 +4,8 @@ from transformers import AutoTokenizer
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # 也可以加载本地模型："bert-base-chinese" 换成本地模型路径
-tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
+#tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
+tokenizer = AutoTokenizer.from_pretrained("./model_hub/bert-base-chinese")
 
 MODEL_DIR = './model_hub/bert_cnn'
 LABEL_PATH = './data/THUCNews/class.txt'

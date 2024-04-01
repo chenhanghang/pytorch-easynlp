@@ -11,7 +11,7 @@ warnings.filterwarnings("ignore")
 class Dataset(data.Dataset):
     def __init__(self, split='train'):
         super(Dataset, self).__init__()
-        path = "./data/input/" + str(split) + ".txt"
+        path = "./data/THUCNews/" + str(split) + ".txt"
         self.lines = open(path).readlines()
 
     def __len__(self):

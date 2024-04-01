@@ -5,8 +5,9 @@ from models.bert_cnn_model import *
 
 def predict(sents):
     id2label, _ = get_label()
+    print(MODEL_DIR)
     model = torch.load(MODEL_DIR + '0.pth', map_location=DEVICE)
-    tokenizer = AutoTokenizer.from_pretrained('bert-base-chinese')
+    tokenizer = AutoTokenizer.from_pretrained('./model_hub/bert-base-chinese')
 
     data = tokenizer.batch_encode_plus(
         sents,
@@ -18,8 +19,8 @@ def predict(sents):
         return_attention_mask=True,
     )
 
-    input_ids = data['input_ids']
-    attention_mask = data['attention_mask']
+    input_ids = data['input_ids'].to(DEVICE)
+    attention_mask = data['attention_mask'].to(DEVICE)
 
     model.eval()
     pre = model(input_ids, attention_mask)
